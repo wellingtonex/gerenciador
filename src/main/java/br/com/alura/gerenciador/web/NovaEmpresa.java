@@ -2,7 +2,6 @@ package br.com.alura.gerenciador.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,28 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.Empresa;
 import br.com.alura.gerenciador.dao.EmpresaDAO;
 
-@WebServlet(urlPatterns="/busca")
-public class BuscaEmpresa extends HttpServlet {
+@WebServlet(urlPatterns="/novaEmpresa")
+public class NovaEmpresa extends HttpServlet{
 
-	private static final long serialVersionUID = -5640846148829616329L;
+	private static final long serialVersionUID = -7498237010538197353L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String filtro = req.getParameter("filtro");
+		String nome = req.getParameter("nome");
+		Empresa empresa = new Empresa(nome);
+		new EmpresaDAO().adiciona(empresa);
 		
-		Collection<Empresa> empresas = new EmpresaDAO().buscaPorSimilaridade(filtro);
-
 		PrintWriter writer = resp.getWriter();
+		
 		writer.println("<html>");
 		writer.println("<body>");
-		writer.println("Resultado da busca:</b>");
-		writer.println("<ul>");
-		for (Empresa empresa : empresas) {
-			writer.println("<li>" + empresa.getId() + ": " + empresa.getNome() + "</li>");
-		}
-		writer.println("</ul>");
+		writer.println("Empresa " + nome + " adicionada com sucesso.");		
 		writer.println("</body>");
 		writer.println("</html>");
 	}
