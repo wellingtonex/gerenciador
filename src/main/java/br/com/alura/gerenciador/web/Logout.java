@@ -5,10 +5,11 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.alura.gerenciador.Usuario;
 
 @WebServlet(urlPatterns="/logout")
 public class Logout extends HttpServlet{
@@ -19,11 +20,10 @@ public class Logout extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String mensagem = "";
-		Cookie cookie =  new Cookies(req.getCookies()).buscaUsuarioLogado();
-        if(cookie != null) {
-        	//destruindo um cookie
-        	cookie.setMaxAge(0);
-        	resp.addCookie(cookie);
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario.logado");
+        if(usuario != null) {
+        	req.getSession().removeAttribute("usuario.logado"); //apenas removo esse atribulto da sessão
+        	//req.getSession().invalidate(); limpa, invalida toda a sessao
         	mensagem = "Deslogado com sucesso.";
         } else {
         	mensagem = "Nenhum usuario logado.";
