@@ -17,6 +17,20 @@ import br.com.alura.gerenciador.dao.EmpresaDAO;
 public class BuscaEmpresa extends HttpServlet {
 
 	private static final long serialVersionUID = -5640846148829616329L;
+	
+	public BuscaEmpresa() {
+	    System.out.println("Instanciando uma Servlet do tipo BuscaEmpresa " + this);
+	}
+	
+	@Override
+	public void init() throws ServletException {
+	    System.out.println("Inicializando a Servlet " + this);
+	}
+
+	@Override
+	public void destroy() {
+	    System.out.println("Destruindo a Servlet " + this);
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

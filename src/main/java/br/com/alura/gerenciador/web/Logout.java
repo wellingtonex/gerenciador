@@ -1,7 +1,6 @@
 package br.com.alura.gerenciador.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,22 +18,15 @@ public class Logout extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String mensagem = "";
 		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario.logado");
         if(usuario != null) {
         	req.getSession().removeAttribute("usuario.logado"); //apenas removo esse atribulto da sessão
-        	//req.getSession().invalidate(); limpa, invalida toda a sessao
-        	mensagem = "Deslogado com sucesso.";
+        	req.getRequestDispatcher("/WEB-INF/pages/logoutSuccesss.html").forward(req, resp); // redirecionando a partir do servidor
+        	//resp.sendRedirect("WEB-INF/paginas/logoutSuccesss.html"); //solicitando que o cliente seja redirecionado
         } else {
-        	mensagem = "Nenhum usuario logado.";
+        	//resp.sendRedirect("WEB-INF/paginas/logoutError.html");
+        	req.getRequestDispatcher("/WEB-INF/pages/logoutError.html").forward(req, resp);
         }
-        
-        PrintWriter writer = resp.getWriter();
-        writer.println("<html>");
-		writer.println("<body>");
-		writer.println(mensagem);		
-		writer.println("</body>");
-		writer.println("</html>");
 	}
 
 }
