@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/empresa")
-public class Empresa extends HttpServlet {
+@WebServlet(urlPatterns = "/executar")
+public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = -8329075524629672293L;
 
@@ -18,17 +18,17 @@ public class Empresa extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
-		String tarefa = req.getParameter("tarefa");
-		if (tarefa == null) {
+		String controller = req.getParameter("tarefa");
+		if (controller == null) {
 			throw new IllegalArgumentException(
 					"Parametro tarefa é obrigatorio.");
 		}
-		tarefa = "br.com.alura.gerenciador.web." + tarefa;
+		controller = "br.com.alura.gerenciador.web." + controller;
 
 		try {
-			Class<?> tipo = Class.forName(tarefa);
-			Tarefa tarefaInstance = (Tarefa) tipo.newInstance();
-			String pagina = tarefaInstance.executa(req, res);
+			Class<?> tipo = Class.forName(controller);
+			IControllerTarefa controllerInstance = (IControllerTarefa) tipo.newInstance();
+			String pagina = controllerInstance.executa(req, res);
 			RequestDispatcher dispatcher = req.getRequestDispatcher(pagina);
 			dispatcher.forward(req, res);
 		} catch (ClassNotFoundException | InstantiationException

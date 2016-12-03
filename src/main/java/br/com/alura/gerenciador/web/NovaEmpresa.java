@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.Empresa;
 import br.com.alura.gerenciador.dao.EmpresaDAO;
 
-public class NovaEmpresa implements Tarefa{
+public class NovaEmpresa implements IControllerTarefa{
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) {

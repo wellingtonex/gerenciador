@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.gerenciador.Usuario;
 
-public class Logout implements Tarefa{
+public class Logout implements IControllerTarefa{
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) {
