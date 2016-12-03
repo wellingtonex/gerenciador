@@ -35,7 +35,7 @@ public class Login extends HttpServlet{
 			writer.println("</html>");
 		}else {
 			HttpSession session = req.getSession();
-			session.setAttribute("usuario.logado", usuario);
+			session.setAttribute("usuarioLogado", usuario);
 			//session.setMaxInactiveInterval(xxx); determina o tempo que um sessão pode ficar inativa antes de ser destruida
 			writer.println("<html>");
 			writer.println("<body>");

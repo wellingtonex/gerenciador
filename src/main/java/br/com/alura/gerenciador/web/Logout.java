@@ -18,9 +18,9 @@ public class Logout extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario.logado");
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioLogado");
         if(usuario != null) {
-        	req.getSession().removeAttribute("usuario.logado"); //apenas removo esse atribulto da sessão
+        	req.getSession().removeAttribute("usuarioLogado"); //apenas removo esse atribulto da sessão
         	req.getRequestDispatcher("/WEB-INF/pages/logoutSuccesss.html").forward(req, resp); // redirecionando a partir do servidor
         	//resp.sendRedirect("WEB-INF/paginas/logoutSuccesss.html"); //solicitando que o cliente seja redirecionado
         } else {
