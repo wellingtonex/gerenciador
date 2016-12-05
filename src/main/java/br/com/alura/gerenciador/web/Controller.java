@@ -27,7 +27,7 @@ public class Controller extends HttpServlet {
 
 		try {
 			Class<?> tipo = Class.forName(controller);
-			IControllerTarefa controllerInstance = (IControllerTarefa) tipo.newInstance();
+			IController controllerInstance = (IController) tipo.newInstance();
 			String pagina = controllerInstance.executa(req, res);
 			RequestDispatcher dispatcher = req.getRequestDispatcher(pagina);
 			dispatcher.forward(req, res);

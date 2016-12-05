@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import br.com.alura.gerenciador.Usuario;
 import br.com.alura.gerenciador.dao.UsuarioDAO;
 
-public class Login implements IControllerTarefa{
+public class Login implements IController{
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) {

@@ -31,6 +31,15 @@ public class EmpresaDAO {
 		}
 		return similares;
 	}
+	
+	public Empresa find(Long id) {		
+		for (Empresa empresa : EMPRESAS.values()) {
+			if (empresa.getId().equals(id)) {
+				return empresa;				
+			}				
+		}
+		return null;
+	}
 
 	public void adiciona(Empresa empresa) {
 		geraIdEAdiciona(empresa);

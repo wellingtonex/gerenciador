@@ -3,7 +3,7 @@ package br.com.alura.gerenciador.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface IControllerTarefa {
+public interface IController {
 
 	 String executa(HttpServletRequest req, HttpServletResponse res);
 }
