@@ -17,14 +17,5 @@
 			<li>${empresa.id}: ${empresa.nome}</li>
 		</c:forEach>	
 	</ul>
-	
-	<form action="executar">
-		<select name="empresa" onchange="submit()">
-			<c:forEach var="empresa" items="${empresas}">
-				<option value="${empresa.id}">${empresa.nome}</option>
-			</c:forEach>
-		</select>
-		<input type="hidden" id="tarefa" name="tarefa" value="Combo">
-	</form>
 </body>
 </html>
