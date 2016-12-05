@@ -9,22 +9,18 @@
 </head>
 <body>
 
-	<c:if test="${not empty usuarioLogado}">
-		<p>Logado como ${usuarioLogado.email}</p>
+	<c:if test="${not empty empresaSelecionada}">
+		<p>A empresa selecionada foi ${empresaSelecionada.nome}</p>
 	</c:if>
-	<ul>
-		<c:forEach var="empresa" items="${empresas}">
-			<li>${empresa.id}: ${empresa.nome}</li>
-		</c:forEach>	
-	</ul>
 	
 	<form action="executar">
-		<select name="empresa" onchange="submit()">
+		<select name="empresa">
 			<c:forEach var="empresa" items="${empresas}">
-				<option value="${empresa.id}">${empresa.nome}</option>
+				<option value="${empresa.id}" ${empresa.id eq empresaSelecionada.id ? 'selected' : '' }>${empresa.nome}</option>
 			</c:forEach>
 		</select>
 		<input type="hidden" id="tarefa" name="tarefa" value="Combo">
 	</form>
+	
 </body>
 </html>
